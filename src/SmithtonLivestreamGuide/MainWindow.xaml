@@ -6,7 +6,8 @@
         MinHeight="500" MinWidth="600"
         WindowStartupLocation="CenterScreen"
         Background="#F5F6F8"
-        FontFamily="./Fonts/#Poppins">
+        FontFamily="./Fonts/#Poppins"
+        Loaded="MainWindow_Loaded">
 
     <Window.Resources>
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
@@ -44,7 +45,7 @@
             <Grid>
                 <StackPanel>
                     <TextBlock Text="Smithton Livestream Guide" FontSize="24" FontWeight="Bold" Foreground="#16324F"/>
-                    <TextBlock Text="Step-by-step reference for running the Sunday / Wednesday livestream." FontSize="13" Foreground="#6B7280" Margin="0,2,0,0"/>
+                    <TextBlock Text="Step-by-step reference for running the Sunday livestream." FontSize="13" Foreground="#6B7280" Margin="0,2,0,0"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
                     <CheckBox x:Name="AlwaysOnTopCheckBox" Content="Always on top"
