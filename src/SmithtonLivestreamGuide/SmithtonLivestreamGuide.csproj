@@ -12,6 +12,7 @@
     <Company>Smithton Free Church</Company>
     <Version>1.0.0.0</Version>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
