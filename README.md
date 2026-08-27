@@ -7,11 +7,10 @@ whoever is running the desk doesn't need to dig up a printed sheet or a
 shared doc.
 
 It's a static reference viewer: nothing to click through or check off, just
-the guide laid out clearly, with an "Always on top" option so it can sit
-over EasyWorship / the browser / the ATEM software while you work, and a
-"Start with Windows" option so it's already open when the desk laptop is
-switched on. Light theme, set in Poppins (embedded in the app, no need to
-have it installed on the church laptop).
+the guide laid out clearly, with a "Start with Windows" option so it's
+already open when the desk laptop is switched on. Light theme, set in
+Poppins (embedded in the app, no need to have it installed on the church
+laptop).
 
 It also auto-updates itself: on launch it checks this repo's GitHub
 Releases, and if a newer version has been published it shows a mandatory
