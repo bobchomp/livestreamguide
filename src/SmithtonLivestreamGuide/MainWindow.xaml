@@ -46,9 +46,14 @@
                     <TextBlock Text="Smithton Livestream Guide" FontSize="24" FontWeight="Bold" Foreground="#16324F"/>
                     <TextBlock Text="Step-by-step reference for running the Sunday / Wednesday livestream." FontSize="13" Foreground="#6B7280" Margin="0,2,0,0"/>
                 </StackPanel>
-                <CheckBox x:Name="AlwaysOnTopCheckBox" Content="Always on top"
-                          Foreground="#2B2F36" VerticalAlignment="Center" HorizontalAlignment="Right"
-                          Checked="AlwaysOnTopCheckBox_Changed" Unchecked="AlwaysOnTopCheckBox_Changed"/>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <CheckBox x:Name="AlwaysOnTopCheckBox" Content="Always on top"
+                              Foreground="#2B2F36" HorizontalAlignment="Right"
+                              Checked="AlwaysOnTopCheckBox_Changed" Unchecked="AlwaysOnTopCheckBox_Changed"/>
+                    <CheckBox x:Name="StartWithWindowsCheckBox" Content="Start with Windows"
+                              Foreground="#2B2F36" HorizontalAlignment="Right" Margin="0,6,0,0"
+                              Checked="StartWithWindowsCheckBox_Changed" Unchecked="StartWithWindowsCheckBox_Changed"/>
+                </StackPanel>
             </Grid>
         </Border>
 
