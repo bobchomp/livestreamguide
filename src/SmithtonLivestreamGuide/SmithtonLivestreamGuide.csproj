@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>SmithtonLivestreamGuide</AssemblyName>
+    <RootNamespace>SmithtonLivestreamGuide</RootNamespace>
+    <ApplicationTitle>Smithton Livestream Guide</ApplicationTitle>
+    <Product>Smithton Livestream Guide</Product>
+    <Company>Smithton Free Church</Company>
+    <Version>1.0.0.0</Version>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+</Project>
