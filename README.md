@@ -11,14 +11,13 @@ the guide laid out clearly, with an "Always on top" option so it can sit
 over EasyWorship / the browser / the ATEM software while you work, and a
 "Start with Windows" option so it's already open when the desk laptop is
 switched on. Light theme, set in Poppins (embedded in the app, no need to
-have it installed on the church laptop), with a custom icon.
+have it installed on the church laptop).
 
 ## Project layout
 
 - `src/SmithtonLivestreamGuide/` — the WPF (.NET 8) app.
 - `src/SmithtonLivestreamGuide/Fonts/` — the Poppins `.ttf` files, embedded
   into the app as WPF resources (SIL Open Font License, see `OFL.txt`).
-- `src/SmithtonLivestreamGuide/Assets/AppIcon.ico` — the app/installer icon.
 - `installer/setup.iss` — Inno Setup script that packages the published app
   into a proper Windows installer (Start Menu shortcut, optional desktop
   icon, uninstaller).
