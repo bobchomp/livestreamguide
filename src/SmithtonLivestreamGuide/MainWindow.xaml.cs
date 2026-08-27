@@ -11,12 +11,31 @@ public partial class MainWindow : Window
     private const string RunValueName = "SmithtonLivestreamGuide";
 
     private bool _isLoaded;
+    private bool _updateCheckStarted;
 
     public MainWindow()
     {
         InitializeComponent();
         StartWithWindowsCheckBox.IsChecked = IsStartWithWindowsEnabled();
         _isLoaded = true;
+    }
+
+    private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (_updateCheckStarted)
+        {
+            return;
+        }
+        _updateCheckStarted = true;
+
+        var updateInfo = await UpdateChecker.CheckForUpdateAsync();
+        if (updateInfo is null)
+        {
+            return;
+        }
+
+        var updateWindow = new UpdateWindow(updateInfo) { Owner = this };
+        updateWindow.ShowDialog();
     }
 
     private void AlwaysOnTopCheckBox_Changed(object sender, RoutedEventArgs e)

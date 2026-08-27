@@ -13,9 +13,26 @@ over EasyWorship / the browser / the ATEM software while you work, and a
 switched on. Light theme, set in Poppins (embedded in the app, no need to
 have it installed on the church laptop).
 
+It also auto-updates itself: on launch it checks this repo's GitHub
+Releases, and if a newer version has been published it shows a mandatory
+"Update available" popup (no way to dismiss it — it must be applied before
+the guide is usable again). Clicking **Update** downloads the new
+installer, shows a small progress bar while it does, then runs the
+installer fully silently, which closes the app, replaces it, and reopens
+it automatically. If GitHub can't be reached (offline, no internet yet)
+the check just fails silently and the guide opens normally — it never
+blocks you from using the current version because of a failed check.
+
 ## Project layout
 
 - `src/SmithtonLivestreamGuide/` — the WPF (.NET 8) app.
+- `src/SmithtonLivestreamGuide/UpdateChecker.cs` — polls the GitHub
+  Releases API and compares the published tag against the running app's
+  version.
+- `src/SmithtonLivestreamGuide/UpdateInstaller.cs` — downloads the new
+  installer and launches it silently.
+- `src/SmithtonLivestreamGuide/UpdateWindow.xaml` — the mandatory update
+  popup (prompt → progress → error/retry states).
 - `src/SmithtonLivestreamGuide/Fonts/` — the Poppins `.ttf` files, embedded
   into the app as WPF resources (SIL Open Font License, see `OFL.txt`).
 - `installer/setup.iss` — Inno Setup script that packages the published app
@@ -45,6 +62,11 @@ loose `.exe` to double-click.
 > warning on first run. Clicking **More info → Run anyway** proceeds. If
 > this is a problem, a code-signing certificate can be added to the
 > workflow later.
+
+> **Note on repo visibility:** the auto-update check calls GitHub's public
+> Releases API (`api.github.com/repos/bobchomp/livestreamguide/releases/latest`)
+> with no authentication, so this repository needs to stay **public** for
+> update checks to work on the church laptop.
 
 ## Building locally (optional)
 

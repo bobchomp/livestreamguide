@@ -6,7 +6,8 @@
         MinHeight="500" MinWidth="600"
         WindowStartupLocation="CenterScreen"
         Background="#F5F6F8"
-        FontFamily="./Fonts/#Poppins">
+        FontFamily="./Fonts/#Poppins"
+        Loaded="MainWindow_Loaded">
 
     <Window.Resources>
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">

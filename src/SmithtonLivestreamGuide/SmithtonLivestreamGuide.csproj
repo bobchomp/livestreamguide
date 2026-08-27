@@ -13,6 +13,9 @@
     <Company>Smithton Free Church</Company>
     <Version>1.0.0.0</Version>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- Keep AssemblyInformationalVersion exactly equal to $(Version) - the update checker
+         parses it and a git-sha suffix would break that. -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>
