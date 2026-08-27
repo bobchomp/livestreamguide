@@ -38,11 +38,6 @@ public partial class MainWindow : Window
         updateWindow.ShowDialog();
     }
 
-    private void AlwaysOnTopCheckBox_Changed(object sender, RoutedEventArgs e)
-    {
-        Topmost = AlwaysOnTopCheckBox.IsChecked == true;
-    }
-
     private void StartWithWindowsCheckBox_Changed(object sender, RoutedEventArgs e)
     {
         if (!_isLoaded)
