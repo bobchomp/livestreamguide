@@ -151,9 +151,20 @@
                 <TextBlock Text="• Go on Facebook - confirm we are live" Style="{StaticResource SubSubBodyStyle}"/>
                 <TextBlock Text="• Go on website (smithtonchurch.com) - confirm we are live" Style="{StaticResource SubSubBodyStyle}"/>
 
-                <Border Background="#FDECEC" BorderBrush="#E4A2A2" BorderThickness="1.5" CornerRadius="6" Padding="16,12" Margin="0,26,0,10">
-                    <TextBlock Text="BEFORE GOING OFF AIR, MAKE SURE THE RTMP WEB PLAYER HAS CAUGHT UP - THERE IS A MINIMUM 20 SECOND DELAY."
-                               FontWeight="Bold" FontSize="14.5" Foreground="#8A1F1F" TextWrapping="Wrap"/>
+                <Border Background="#FEF6E0" BorderBrush="#F0CB6B" BorderThickness="1.5" CornerRadius="6" Padding="16,12" Margin="0,26,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Width="20" Height="20" CornerRadius="10" Background="#D9A106"
+                                VerticalAlignment="Top" Margin="0,1,10,0">
+                            <TextBlock Text="i" FontFamily="./Fonts/#Poppins SemiBold" FontSize="13" Foreground="White"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock Grid.Column="1" Text="BEFORE GOING OFF AIR, MAKE SURE THE RTMP WEB PLAYER HAS CAUGHT UP - THERE IS A MINIMUM 20 SECOND DELAY."
+                                   FontWeight="Bold" FontSize="14.5" Foreground="#7A5A00" TextWrapping="Wrap"/>
+                    </Grid>
                 </Border>
 
             </StackPanel>
