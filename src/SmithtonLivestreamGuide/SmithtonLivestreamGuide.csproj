@@ -27,4 +27,11 @@
     <Resource Include="Fonts\Poppins-Bold.ttf" />
   </ItemGroup>
 
+  <!-- BuildTimestamp is passed by the release workflow (-p:BuildTimestamp=...) as a UTC
+       "yyyy-MM-ddTHH:mm:ssZ" string, read by AboutWindow to show when the app was last built.
+       Empty on a local/dev build - AboutWindow falls back gracefully in that case. -->
+  <ItemGroup>
+    <AssemblyMetadata Include="BuildTimestamp" Value="$(BuildTimestamp)" />
+  </ItemGroup>
+
 </Project>
