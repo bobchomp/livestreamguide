@@ -5,24 +5,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Win32;
 
 namespace SmithtonLivestreamGuide;
 
 public partial class MainWindow : Window
 {
-    private const string RunKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Run";
-    private const string RunValueName = "SmithtonLivestreamGuide";
-
-    private bool _isLoaded;
     private bool _updateCheckStarted;
 
     public MainWindow()
     {
         InitializeComponent();
         FitToScreen();
-        StartWithWindowsCheckBox.IsChecked = IsStartWithWindowsEnabled();
-        _isLoaded = true;
     }
 
     // On a small/low-resolution laptop screen, the XAML-defined default size can be taller than
@@ -109,44 +102,14 @@ public partial class MainWindow : Window
         }
     }
 
-    private void StartWithWindowsCheckBox_Changed(object sender, RoutedEventArgs e)
+    private void SettingsMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        if (!_isLoaded)
-        {
-            return;
-        }
-
-        try
-        {
-            if (StartWithWindowsCheckBox.IsChecked == true)
-            {
-                using var key = Registry.CurrentUser.CreateSubKey(RunKeyPath, writable: true);
-                key.SetValue(RunValueName, $"\"{ExecutablePath}\"");
-            }
-            else
-            {
-                using var key = Registry.CurrentUser.OpenSubKey(RunKeyPath, writable: true);
-                key?.DeleteValue(RunValueName, throwOnMissingValue: false);
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(
-                this,
-                $"Couldn't update the Windows startup setting:\n{ex.Message}",
-                "Smithton Livestream Guide",
-                MessageBoxButton.OK,
-                MessageBoxImage.Warning);
-            StartWithWindowsCheckBox.IsChecked = IsStartWithWindowsEnabled();
-        }
+        var settingsWindow = new SettingsWindow { Owner = this };
+        settingsWindow.ShowDialog();
     }
 
-    private static bool IsStartWithWindowsEnabled()
+    private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        using var key = Registry.CurrentUser.OpenSubKey(RunKeyPath, writable: false);
-        var value = key?.GetValue(RunValueName) as string;
-        return value != null && string.Equals(value.Trim('"'), ExecutablePath, StringComparison.OrdinalIgnoreCase);
+        Close();
     }
-
-    private static string ExecutablePath => Process.GetCurrentProcess().MainModule!.FileName!;
 }
