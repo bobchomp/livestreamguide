@@ -1,7 +1,10 @@
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Win32;
 
 namespace SmithtonLivestreamGuide;
@@ -46,6 +49,25 @@ public partial class MainWindow : Window
     {
         e.Handled = true;
         GuideScrollViewer.ScrollToVerticalOffset(GuideScrollViewer.VerticalOffset - (e.Delta * ScrollSpeedFactor));
+    }
+
+    private static readonly SolidColorBrush CopiedFlashBrush = new(Color.FromRgb(0xD1, 0xF2, 0xDD));
+
+    private async void CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button || button.Tag is not string value)
+        {
+            return;
+        }
+
+        Clipboard.SetText(value);
+
+        if (button.Template.FindName("CopyButtonBackground", button) is Border background)
+        {
+            background.Background = CopiedFlashBrush;
+            await Task.Delay(600);
+            background.Background = Brushes.Transparent;
+        }
     }
 
     private void StartWithWindowsCheckBox_Changed(object sender, RoutedEventArgs e)

@@ -67,6 +67,26 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="CopyButtonStyle" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ToolTip" Value="Copy"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="CopyButtonBackground" Background="{TemplateBinding Background}" CornerRadius="4" Padding="4">
+                            <Grid Width="13" Height="13">
+                                <Rectangle Width="9" Height="9" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                           Stroke="#6B7280" StrokeThickness="1.3" RadiusX="1.5" RadiusY="1.5"/>
+                                <Rectangle Width="9" Height="9" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                           Fill="#F5F6F8" Stroke="#6B7280" StrokeThickness="1.3" RadiusX="1.5" RadiusY="1.5"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <DockPanel>
@@ -124,8 +144,16 @@
 
                 <TextBlock Text="RTMP Web Player" Style="{StaticResource SubHeaderStyle}"/>
                 <TextBlock Text="• Click 'Login' in the top right corner" Style="{StaticResource SubBodyStyle}"/>
-                <TextBlock Style="{StaticResource SubSubBodyStyle}">• Email is '<Run FontWeight="Bold">office@smithtonchurch.com</Run>'</TextBlock>
-                <TextBlock Style="{StaticResource SubSubBodyStyle}">• Password is '<Run FontWeight="Bold">smithtonfr33</Run>'</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource SubSubBodyStyle}">• Email is '<Run FontWeight="Bold">office@smithtonchurch.com</Run>'</TextBlock>
+                    <Button Style="{StaticResource CopyButtonStyle}" VerticalAlignment="Center" Margin="4,0,0,0"
+                            Tag="office@smithtonchurch.com" Click="CopyButton_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource SubSubBodyStyle}">• Password is '<Run FontWeight="Bold">smithtonfr33</Run>'</TextBlock>
+                    <Button Style="{StaticResource CopyButtonStyle}" VerticalAlignment="Center" Margin="4,0,0,0"
+                            Tag="smithtonfr33" Click="CopyButton_Click"/>
+                </StackPanel>
                 <TextBlock Text="• Open the channel called 'Smithton Free Church'" Style="{StaticResource SubBodyStyle}"/>
                 <TextBlock Text="• Make sure the thumbnail is set to the correct slide" Style="{StaticResource SubBodyStyle}"/>
                 <TextBlock Text="• Welcome to Smithton Church slide for Sundays" Style="{StaticResource SubSubBodyStyle}"/>
