@@ -11,6 +11,9 @@ namespace SmithtonLivestreamGuide;
 
 public sealed record UpdateInfo(string Version, string DownloadUrl);
 
+/// <summary>Result of an interactive (user-initiated) update check.</summary>
+public sealed record UpdateCheckResult(bool Succeeded, UpdateInfo? UpdateInfo);
+
 public static class UpdateChecker
 {
     private const string ReleasesApiUrl = "https://api.github.com/repos/bobchomp/livestreamguide/releases/latest";
@@ -21,13 +24,27 @@ public static class UpdateChecker
             .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
             .InformationalVersion;
 
+    /// <summary>Silent check used on startup. Returns null on "up to date" and on any failure
+    /// alike (offline, GitHub down, etc.) - it never needs to tell those apart, since either
+    /// way nothing should interrupt the guide.</summary>
     public static async Task<UpdateInfo?> CheckForUpdateAsync(CancellationToken cancellationToken = default)
+    {
+        var result = await CheckCoreAsync(cancellationToken).ConfigureAwait(false);
+        return result.Succeeded ? result.UpdateInfo : null;
+    }
+
+    /// <summary>Check used from Help > Check for Updates, where the user is waiting on a
+    /// result and "couldn't check" needs to read differently from "you're up to date".</summary>
+    public static Task<UpdateCheckResult> CheckForUpdateInteractiveAsync(CancellationToken cancellationToken = default) =>
+        CheckCoreAsync(cancellationToken);
+
+    private static async Task<UpdateCheckResult> CheckCoreAsync(CancellationToken cancellationToken)
     {
         var currentVersion = CurrentVersion;
         if (currentVersion is null || !TryParseVersion(currentVersion, out var currentParsed))
         {
             // Not a release build (e.g. a local dev build) - nothing to compare against.
-            return null;
+            return new UpdateCheckResult(Succeeded: false, UpdateInfo: null);
         }
 
         using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
@@ -41,8 +58,8 @@ public static class UpdateChecker
         }
         catch
         {
-            // Offline, GitHub unreachable, rate-limited, etc. Fail open - don't block the guide.
-            return null;
+            // Offline, GitHub unreachable, rate-limited, etc.
+            return new UpdateCheckResult(Succeeded: false, UpdateInfo: null);
         }
 
         try
@@ -53,13 +70,13 @@ public static class UpdateChecker
             var tagName = root.GetProperty("tag_name").GetString();
             if (string.IsNullOrEmpty(tagName))
             {
-                return null;
+                return new UpdateCheckResult(Succeeded: false, UpdateInfo: null);
             }
 
             var latestVersionText = tagName.StartsWith('v') ? tagName[1..] : tagName;
             if (!TryParseVersion(latestVersionText, out var latestParsed) || latestParsed.CompareTo(currentParsed) <= 0)
             {
-                return null;
+                return new UpdateCheckResult(Succeeded: true, UpdateInfo: null);
             }
 
             foreach (var asset in root.GetProperty("assets").EnumerateArray())
@@ -70,16 +87,17 @@ public static class UpdateChecker
                     var downloadUrl = asset.GetProperty("browser_download_url").GetString();
                     if (!string.IsNullOrEmpty(downloadUrl))
                     {
-                        return new UpdateInfo(latestVersionText, downloadUrl);
+                        return new UpdateCheckResult(Succeeded: true, UpdateInfo: new UpdateInfo(latestVersionText, downloadUrl));
                     }
                 }
             }
 
-            return null;
+            // Newer tag exists but no installer asset was found on it - nothing installable yet.
+            return new UpdateCheckResult(Succeeded: true, UpdateInfo: null);
         }
         catch
         {
-            return null;
+            return new UpdateCheckResult(Succeeded: false, UpdateInfo: null);
         }
     }
 

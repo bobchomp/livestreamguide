@@ -97,6 +97,11 @@
                 <Separator/>
                 <MenuItem Header="E_xit" Click="ExitMenuItem_Click"/>
             </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_Check for Updates" Click="CheckForUpdatesMenuItem_Click"/>
+                <Separator/>
+                <MenuItem Header="_About" Click="AboutMenuItem_Click"/>
+            </MenuItem>
         </Menu>
 
         <Border DockPanel.Dock="Top" Background="White" BorderBrush="#E3E5E9" BorderThickness="0,0,0,1" Padding="20,14">

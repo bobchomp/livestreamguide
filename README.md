@@ -9,8 +9,11 @@ shared doc.
 It's a static reference viewer: nothing to click through or check off, just
 the guide laid out clearly. A File menu holds **Settings** (a "Start with
 Windows" toggle, so the guide is already open when the desk laptop is
-switched on) and **Exit**. Light theme, set in Poppins (embedded in the
-app, no need to have it installed on the church laptop).
+switched on) and **Exit**; a Help menu holds **Check for Updates** (an
+on-demand version of the same GitHub Releases check the app does on
+launch, with feedback either way) and **About** (current version + a
+one-line summary of the app). Light theme, set in Poppins (embedded in
+the app, no need to have it installed on the church laptop).
 
 It also auto-updates itself: on launch it checks this repo's GitHub
 Releases, and if a newer version has been published it shows a mandatory
@@ -27,13 +30,16 @@ blocks you from using the current version because of a failed check.
 - `src/SmithtonLivestreamGuide/` — the WPF (.NET 8) app.
 - `src/SmithtonLivestreamGuide/UpdateChecker.cs` — polls the GitHub
   Releases API and compares the published tag against the running app's
-  version.
+  version. `CheckForUpdateAsync` is the silent startup check;
+  `CheckForUpdateInteractiveAsync` is used by Help → Check for Updates and
+  distinguishes "up to date" from "couldn't check".
 - `src/SmithtonLivestreamGuide/UpdateInstaller.cs` — downloads the new
   installer and launches it silently.
 - `src/SmithtonLivestreamGuide/UpdateWindow.xaml` — the mandatory update
   popup (prompt → progress → error/retry states).
 - `src/SmithtonLivestreamGuide/SettingsWindow.xaml` — the File → Settings
   dialog (currently just the "Start with Windows" toggle).
+- `src/SmithtonLivestreamGuide/AboutWindow.xaml` — the Help → About dialog.
 - `src/SmithtonLivestreamGuide/Fonts/` — the Poppins `.ttf` files, embedded
   into the app as WPF resources (SIL Open Font License, see `OFL.txt`).
 - `installer/setup.iss` — Inno Setup script that packages the published app

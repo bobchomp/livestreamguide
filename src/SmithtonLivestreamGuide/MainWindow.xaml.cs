@@ -112,4 +112,40 @@ public partial class MainWindow : Window
     {
         Close();
     }
+
+    private async void CheckForUpdatesMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        var result = await UpdateChecker.CheckForUpdateInteractiveAsync();
+
+        if (!result.Succeeded)
+        {
+            MessageBox.Show(
+                this,
+                "Couldn't check for updates. Check the internet connection and try again.",
+                "Smithton Livestream Guide",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+            return;
+        }
+
+        if (result.UpdateInfo is null)
+        {
+            MessageBox.Show(
+                this,
+                "You're already on the latest version.",
+                "Smithton Livestream Guide",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+            return;
+        }
+
+        var updateWindow = new UpdateWindow(result.UpdateInfo) { Owner = this };
+        updateWindow.ShowDialog();
+    }
+
+    private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        var aboutWindow = new AboutWindow { Owner = this };
+        aboutWindow.ShowDialog();
+    }
 }
