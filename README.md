@@ -7,10 +7,10 @@ whoever is running the desk doesn't need to dig up a printed sheet or a
 shared doc.
 
 It's a static reference viewer: nothing to click through or check off, just
-the guide laid out clearly, with a "Start with Windows" option so it's
-already open when the desk laptop is switched on. Light theme, set in
-Poppins (embedded in the app, no need to have it installed on the church
-laptop).
+the guide laid out clearly. A File menu holds **Settings** (a "Start with
+Windows" toggle, so the guide is already open when the desk laptop is
+switched on) and **Exit**. Light theme, set in Poppins (embedded in the
+app, no need to have it installed on the church laptop).
 
 It also auto-updates itself: on launch it checks this repo's GitHub
 Releases, and if a newer version has been published it shows a mandatory
@@ -32,6 +32,8 @@ blocks you from using the current version because of a failed check.
   installer and launches it silently.
 - `src/SmithtonLivestreamGuide/UpdateWindow.xaml` — the mandatory update
   popup (prompt → progress → error/retry states).
+- `src/SmithtonLivestreamGuide/SettingsWindow.xaml` — the File → Settings
+  dialog (currently just the "Start with Windows" toggle).
 - `src/SmithtonLivestreamGuide/Fonts/` — the Poppins `.ttf` files, embedded
   into the app as WPF resources (SIL Open Font License, see `OFL.txt`).
 - `installer/setup.iss` — Inno Setup script that packages the published app
