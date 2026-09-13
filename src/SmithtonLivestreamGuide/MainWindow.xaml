@@ -87,6 +87,30 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="OpenLinkButtonStyle" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="ToolTip" Value="Open in browser"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="OpenLinkButtonBackground" Background="#EEF2F6" CornerRadius="10" Padding="8,2">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Open" FontFamily="./Fonts/#Poppins SemiBold" FontSize="11.5" Foreground="#1E3A5F" VerticalAlignment="Center"/>
+                                <Path Data="M 2,10 L 10,2 M 5,2 L 10,2 L 10,7" Stroke="#1E3A5F" StrokeThickness="1.4"
+                                      StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                      Width="10" Height="10" Stretch="Uniform" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="OpenLinkButtonBackground" Property="Background" Value="#E2E8F0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <DockPanel>
@@ -133,7 +157,11 @@
                 <TextBlock Text="EasyWorship" Style="{StaticResource SubHeaderStyle}"/>
                 <TextBlock Text="• Select the &quot;Welcome to Smithton Church&quot; slide" Style="{StaticResource SubBodyStyle}"/>
 
-                <TextBlock Text="Restream" Style="{StaticResource SubHeaderStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Restream" Style="{StaticResource SubHeaderStyle}"/>
+                    <Button Style="{StaticResource OpenLinkButtonStyle}" VerticalAlignment="Center" Margin="8,0,0,0"
+                            Tag="https://app.restream.io/home" Click="OpenLinkButton_Click"/>
+                </StackPanel>
                 <TextBlock Text="• Update the titles for Youtube &amp; Facebook" Style="{StaticResource SubBodyStyle}"/>
                 <TextBlock Text="• Click &quot;Update Titles&quot;" Style="{StaticResource SubSubBodyStyle}"/>
                 <TextBlock Text="• Title: Get from sermon title / church notices" Style="{StaticResource SubSubBodyStyle}"/>
@@ -142,7 +170,11 @@
                 <TextBlock Text="• Ensure Youtube &amp; Facebook are enabled for receiving the stream" Style="{StaticResource SubBodyStyle}"/>
                 <TextBlock Text="• Ensure the toggle button is &quot;on&quot; - it should show as blue" Style="{StaticResource SubSubBodyStyle}"/>
 
-                <TextBlock Text="RTMP Web Player" Style="{StaticResource SubHeaderStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="RTMP Web Player" Style="{StaticResource SubHeaderStyle}"/>
+                    <Button Style="{StaticResource OpenLinkButtonStyle}" VerticalAlignment="Center" Margin="8,0,0,0"
+                            Tag="https://stream.rossmackenzie.co.uk" Click="OpenLinkButton_Click"/>
+                </StackPanel>
                 <TextBlock Text="• Click 'Login' in the top right corner" Style="{StaticResource SubBodyStyle}"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource SubSubBodyStyle}">• Email is '<Run FontWeight="Bold">office@smithtonchurch.com</Run>'</TextBlock>
@@ -176,9 +208,21 @@
                 <TextBlock Text="• On the ATEM BlackMagic panel - click &quot;ON AIR&quot; - top right" Style="{StaticResource SubSubBodyStyle}"/>
                 <TextBlock Text="• On RTMP Web Player wait 20-30 seconds, then check that the stream has come through" Style="{StaticResource SubSubBodyStyle}"/>
                 <TextBlock Text="• Post-Checks" Style="{StaticResource SubBodyStyle}"/>
-                <TextBlock Text="• Go on YouTube - confirm we are live" Style="{StaticResource SubSubBodyStyle}"/>
-                <TextBlock Text="• Go on Facebook - confirm we are live" Style="{StaticResource SubSubBodyStyle}"/>
-                <TextBlock Text="• Go on website (smithtonchurch.com) - confirm we are live" Style="{StaticResource SubSubBodyStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="• Go on YouTube - confirm we are live" Style="{StaticResource SubSubBodyStyle}"/>
+                    <Button Style="{StaticResource OpenLinkButtonStyle}" VerticalAlignment="Center" Margin="6,0,0,0"
+                            Tag="https://www.youtube.com/@SmithtonChurchVideo" Click="OpenLinkButton_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="• Go on Facebook - confirm we are live" Style="{StaticResource SubSubBodyStyle}"/>
+                    <Button Style="{StaticResource OpenLinkButtonStyle}" VerticalAlignment="Center" Margin="6,0,0,0"
+                            Tag="https://www.facebook.com/smithtonchurch/" Click="OpenLinkButton_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="• Go on website (smithtonchurch.com) - confirm we are live" Style="{StaticResource SubSubBodyStyle}"/>
+                    <Button Style="{StaticResource OpenLinkButtonStyle}" VerticalAlignment="Center" Margin="6,0,0,0"
+                            Tag="https://smithtonchurch.com" Click="OpenLinkButton_Click"/>
+                </StackPanel>
 
                 <Border Background="#FEF6E0" BorderBrush="#F0CB6B" BorderThickness="1.5" CornerRadius="6" Padding="16,12" Margin="0,26,0,10">
                     <Grid>

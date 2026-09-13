@@ -70,6 +70,28 @@ public partial class MainWindow : Window
         }
     }
 
+    private void OpenLinkButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button || button.Tag is not string url)
+        {
+            return;
+        }
+
+        try
+        {
+            Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                $"Couldn't open the link:\n{ex.Message}",
+                "Smithton Livestream Guide",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+    }
+
     private void StartWithWindowsCheckBox_Changed(object sender, RoutedEventArgs e)
     {
         if (!_isLoaded)
