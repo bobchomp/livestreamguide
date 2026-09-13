@@ -84,7 +84,6 @@
         </Style>
         <Style TargetType="Menu">
             <Setter Property="Background" Value="White"/>
-            <Setter Property="FontFamily" Value="./Fonts/#Poppins"/>
         </Style>
         <Style TargetType="MenuItem">
             <Setter Property="Foreground" Value="#2B2F36"/>
