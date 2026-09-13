@@ -26,6 +26,7 @@
                 <TextBlock Grid.Column="0" Text="Start with Windows" FontSize="14" Foreground="#2B2F36" VerticalAlignment="Center"/>
                 <CheckBox x:Name="StartWithWindowsCheckBox" Grid.Column="1"
                           Style="{StaticResource ToggleSwitchStyle}"
+                          VerticalAlignment="Center" HorizontalAlignment="Center"
                           Checked="StartWithWindowsCheckBox_Changed" Unchecked="StartWithWindowsCheckBox_Changed"/>
             </Grid>
         </StackPanel>
