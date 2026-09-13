@@ -85,7 +85,8 @@
             </Grid>
         </Border>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="24,10,24,30">
+        <ScrollViewer x:Name="GuideScrollViewer" VerticalScrollBarVisibility="Auto" Padding="24,10,24,30"
+                      PreviewMouseWheel="GuideScrollViewer_PreviewMouseWheel">
             <StackPanel>
 
                 <TextBlock Text="Initial Setup" Style="{StaticResource SectionHeaderStyle}"/>

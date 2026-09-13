@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Input;
 using Microsoft.Win32;
 
 namespace SmithtonLivestreamGuide;
@@ -36,6 +37,15 @@ public partial class MainWindow : Window
 
         var updateWindow = new UpdateWindow(updateInfo) { Owner = this };
         updateWindow.ShowDialog();
+    }
+
+    // WPF's default mouse-wheel scroll distance feels too fast for this much text; scale it down.
+    private const double ScrollSpeedFactor = 0.25;
+
+    private void GuideScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+        e.Handled = true;
+        GuideScrollViewer.ScrollToVerticalOffset(GuideScrollViewer.VerticalOffset - (e.Delta * ScrollSpeedFactor));
     }
 
     private void StartWithWindowsCheckBox_Changed(object sender, RoutedEventArgs e)
