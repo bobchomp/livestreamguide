@@ -124,8 +124,8 @@
 
                 <TextBlock Text="RTMP Web Player" Style="{StaticResource SubHeaderStyle}"/>
                 <TextBlock Text="• Click 'Login' in the top right corner" Style="{StaticResource SubBodyStyle}"/>
-                <TextBlock Text="• Username is 'admin'" Style="{StaticResource SubSubBodyStyle}"/>
-                <TextBlock Text="• Password is 'smithton'" Style="{StaticResource SubSubBodyStyle}"/>
+                <TextBlock Style="{StaticResource SubSubBodyStyle}">• Email is '<Run FontWeight="Bold">office@smithtonchurch.com</Run>'</TextBlock>
+                <TextBlock Style="{StaticResource SubSubBodyStyle}">• Password is '<Run FontWeight="Bold">smithtonfr33</Run>'</TextBlock>
                 <TextBlock Text="• Open the channel called 'Smithton Free Church'" Style="{StaticResource SubBodyStyle}"/>
                 <TextBlock Text="• Make sure the thumbnail is set to the correct slide" Style="{StaticResource SubBodyStyle}"/>
                 <TextBlock Text="• Welcome to Smithton Church slide for Sundays" Style="{StaticResource SubSubBodyStyle}"/>
