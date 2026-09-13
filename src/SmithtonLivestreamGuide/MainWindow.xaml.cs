@@ -20,8 +20,25 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        FitToScreen();
         StartWithWindowsCheckBox.IsChecked = IsStartWithWindowsEnabled();
         _isLoaded = true;
+    }
+
+    // On a small/low-resolution laptop screen, the XAML-defined default size can be taller than
+    // the visible work area, pushing the title bar (and its close button) off-screen. Shrink to
+    // fit the actual work area (screen minus taskbar) and center within it instead.
+    private void FitToScreen()
+    {
+        var workArea = SystemParameters.WorkArea;
+        const double margin = 40;
+
+        Width = Math.Min(Width, Math.Max(MinWidth, workArea.Width - margin));
+        Height = Math.Min(Height, Math.Max(MinHeight, workArea.Height - margin));
+
+        WindowStartupLocation = WindowStartupLocation.Manual;
+        Left = workArea.Left + (workArea.Width - Width) / 2;
+        Top = workArea.Top + (workArea.Height - Height) / 2;
     }
 
     private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
