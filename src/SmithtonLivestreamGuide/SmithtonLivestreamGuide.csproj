@@ -12,7 +12,9 @@
     <Product>Smithton Livestream Guide</Product>
     <Company>Smithton Free Church</Company>
     <Version>1.0.0.0</Version>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- InvariantGlobalization was removed: WPF's Menu/Popup control templates need real
+         culture data to load, and enabling it broke opening the File menu with
+         "XamlParseException: Cannot find non-neutral culture related to 'en-us'". -->
     <!-- Keep AssemblyInformationalVersion exactly equal to $(Version) - the update checker
          parses it and a git-sha suffix would break that. -->
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
