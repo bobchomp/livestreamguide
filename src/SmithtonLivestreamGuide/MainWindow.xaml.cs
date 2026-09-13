@@ -1,6 +1,10 @@
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Win32;
 
 namespace SmithtonLivestreamGuide;
@@ -36,6 +40,56 @@ public partial class MainWindow : Window
 
         var updateWindow = new UpdateWindow(updateInfo) { Owner = this };
         updateWindow.ShowDialog();
+    }
+
+    // WPF's default mouse-wheel scroll distance feels too fast for this much text; scale it down.
+    private const double ScrollSpeedFactor = 0.25;
+
+    private void GuideScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+        e.Handled = true;
+        GuideScrollViewer.ScrollToVerticalOffset(GuideScrollViewer.VerticalOffset - (e.Delta * ScrollSpeedFactor));
+    }
+
+    private static readonly SolidColorBrush CopiedFlashBrush = new(Color.FromRgb(0xD1, 0xF2, 0xDD));
+
+    private async void CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button || button.Tag is not string value)
+        {
+            return;
+        }
+
+        Clipboard.SetText(value);
+
+        if (button.Template.FindName("CopyButtonBackground", button) is Border background)
+        {
+            background.Background = CopiedFlashBrush;
+            await Task.Delay(600);
+            background.Background = Brushes.Transparent;
+        }
+    }
+
+    private void OpenLinkButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button || button.Tag is not string url)
+        {
+            return;
+        }
+
+        try
+        {
+            Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                $"Couldn't open the link:\n{ex.Message}",
+                "Smithton Livestream Guide",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
     }
 
     private void StartWithWindowsCheckBox_Changed(object sender, RoutedEventArgs e)
