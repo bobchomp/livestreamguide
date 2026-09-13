@@ -39,7 +39,8 @@ blocks you from using the current version because of a failed check.
   popup (prompt → progress → error/retry states).
 - `src/SmithtonLivestreamGuide/SettingsWindow.xaml` — the File → Settings
   dialog (currently just the "Start with Windows" toggle).
-- `src/SmithtonLivestreamGuide/AboutWindow.xaml` — the Help → About dialog.
+- `src/SmithtonLivestreamGuide/AboutWindow.xaml` — the Help → About dialog
+  (version, build date/time, summary, credit).
 - `src/SmithtonLivestreamGuide/Fonts/` — the Poppins `.ttf` files, embedded
   into the app as WPF resources (SIL Open Font License, see `OFL.txt`).
 - `installer/setup.iss` — Inno Setup script that packages the published app

@@ -25,8 +25,10 @@ jobs:
         run: |
           $date = Get-Date -Format "yyyy.MM.dd"
           $version = "$date-$($env:GITHUB_RUN_NUMBER)"
+          $buildTimestamp = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
           echo "version=$version" >> $env:GITHUB_OUTPUT
           echo "tag=v$version" >> $env:GITHUB_OUTPUT
+          echo "build_timestamp=$buildTimestamp" >> $env:GITHUB_OUTPUT
 
       - name: Publish app (self-contained, single file)
         shell: pwsh
@@ -38,6 +40,7 @@ jobs:
           -p:PublishSingleFile=true
           -p:IncludeNativeLibrariesForSelfExtract=true
           -p:Version=${{ steps.version.outputs.version }}
+          -p:BuildTimestamp=${{ steps.version.outputs.build_timestamp }}
 
       - name: Locate Inno Setup
         id: inno
