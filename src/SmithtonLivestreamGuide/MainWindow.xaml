@@ -139,8 +139,8 @@
                 <TextBlock Text="EasyWorship" Style="{StaticResource SubHeaderStyle}"/>
                 <TextBlock Text="• Select the &quot;Welcome to Smithton Church&quot; slide" Style="{StaticResource SubBodyStyle}"/>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Restream" Style="{StaticResource SubHeaderStyle}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,14,0,4">
+                    <TextBlock Text="Restream" Style="{StaticResource SubHeaderStyle}" Margin="0" VerticalAlignment="Center"/>
                     <Button Style="{StaticResource OpenLinkButtonStyle}" VerticalAlignment="Center" Margin="8,0,0,0"
                             Tag="https://app.restream.io/home" Click="OpenLinkButton_Click"/>
                 </StackPanel>
@@ -152,8 +152,8 @@
                 <TextBlock Text="• Ensure Youtube &amp; Facebook are enabled for receiving the stream" Style="{StaticResource SubBodyStyle}"/>
                 <TextBlock Text="• Ensure the toggle button is &quot;on&quot; - it should show as blue" Style="{StaticResource SubSubBodyStyle}"/>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="RTMP Web Player" Style="{StaticResource SubHeaderStyle}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,14,0,4">
+                    <TextBlock Text="RTMP Web Player" Style="{StaticResource SubHeaderStyle}" Margin="0" VerticalAlignment="Center"/>
                     <Button Style="{StaticResource OpenLinkButtonStyle}" VerticalAlignment="Center" Margin="8,0,0,0"
                             Tag="https://stream.rossmackenzie.co.uk" Click="OpenLinkButton_Click"/>
                 </StackPanel>
