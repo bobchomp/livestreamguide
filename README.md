@@ -23,7 +23,8 @@ installer, shows a small progress bar while it does, then runs the
 installer fully silently, which closes the app, replaces it, and reopens
 it automatically. If GitHub can't be reached (offline, no internet yet)
 the check just fails silently and the guide opens normally — it never
-blocks you from using the current version because of a failed check.
+blocks you from using the current version because of a failed check. See
+[`docs/UPDATE-SYSTEM.md`](docs/UPDATE-SYSTEM.md) for how it works in detail.
 
 ## Project layout
 
