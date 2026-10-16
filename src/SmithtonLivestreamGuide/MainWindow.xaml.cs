@@ -2,7 +2,9 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -141,6 +143,92 @@ public partial class MainWindow : Window
 
         var updateWindow = new UpdateWindow(result.UpdateInfo) { Owner = this };
         updateWindow.ShowDialog();
+    }
+
+    private void PrintButton_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new PrintDialog();
+        if (dialog.ShowDialog() != true)
+        {
+            return;
+        }
+
+        var document = BuildPrintDocument(dialog.PrintableAreaWidth, dialog.PrintableAreaHeight);
+        dialog.PrintDocument(((IDocumentPaginatorSource)document).DocumentPaginator, "Smithton Livestream Guide");
+    }
+
+    // Printing the on-screen visual would only capture one page, so the guide's TextBlocks are
+    // copied into a paginated FlowDocument instead, skipping the Open/Copy buttons.
+    private FlowDocument BuildPrintDocument(double pageWidth, double pageHeight)
+    {
+        var document = new FlowDocument
+        {
+            PageWidth = pageWidth,
+            PageHeight = pageHeight,
+            PagePadding = new Thickness(56),
+            ColumnWidth = double.PositiveInfinity,
+            FontFamily = FontFamily,
+            Background = Brushes.White,
+        };
+
+        document.Blocks.Add(new Paragraph(new Run("Smithton Livestream Guide"))
+        {
+            FontSize = 22,
+            FontWeight = FontWeights.Bold,
+            Foreground = new SolidColorBrush(Color.FromRgb(0x16, 0x32, 0x4F)),
+            Margin = new Thickness(0),
+        });
+
+        foreach (var child in GuideContentPanel.Children)
+        {
+            switch (child)
+            {
+                case TextBlock textBlock:
+                    document.Blocks.Add(ToParagraph(textBlock, new Thickness(0)));
+                    break;
+
+                case StackPanel row when row.Children.OfType<TextBlock>().FirstOrDefault() is TextBlock rowText:
+                    document.Blocks.Add(ToParagraph(rowText, row.Margin));
+                    break;
+
+                case Border box when box.Child is Grid grid && grid.Children.OfType<TextBlock>().FirstOrDefault() is TextBlock boxText:
+                    var note = ToParagraph(boxText, box.Margin);
+                    note.Background = box.Background;
+                    note.BorderBrush = box.BorderBrush;
+                    note.BorderThickness = box.BorderThickness;
+                    note.Padding = box.Padding;
+                    document.Blocks.Add(note);
+                    break;
+            }
+        }
+
+        return document;
+    }
+
+    private static Paragraph ToParagraph(TextBlock source, Thickness outerMargin)
+    {
+        var paragraph = new Paragraph
+        {
+            FontFamily = source.FontFamily,
+            FontSize = source.FontSize,
+            FontWeight = source.FontWeight,
+            Foreground = source.Foreground,
+            Margin = new Thickness(
+                source.Margin.Left + outerMargin.Left,
+                source.Margin.Top + outerMargin.Top,
+                0,
+                source.Margin.Bottom + outerMargin.Bottom),
+        };
+
+        foreach (var inline in source.Inlines)
+        {
+            if (inline is Run run)
+            {
+                paragraph.Inlines.Add(new Run(run.Text) { FontWeight = run.FontWeight });
+            }
+        }
+
+        return paragraph;
     }
 
     private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
