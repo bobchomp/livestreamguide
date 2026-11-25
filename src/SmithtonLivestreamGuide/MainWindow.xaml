@@ -162,31 +162,17 @@
 
                 <TextBlock Text="Login to the Laptop" Style="{StaticResource SubHeaderStyle}"/>
                 <TextBlock Text="• Open EasyWorship" Style="{StaticResource SubBodyStyle}"/>
-                <TextBlock Text="• Open Browser Bookmark for Restream" Style="{StaticResource SubBodyStyle}"/>
                 <TextBlock Text="• Open Browser Bookmark for RTMP Web Player" Style="{StaticResource SubBodyStyle}"/>
 
                 <TextBlock Text="EasyWorship" Style="{StaticResource SubHeaderStyle}"/>
                 <TextBlock Text="• Select the &quot;Welcome to Smithton Church&quot; slide" Style="{StaticResource SubBodyStyle}"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,14,0,4">
-                    <TextBlock Text="Restream" Style="{StaticResource SubHeaderStyle}" Margin="0" VerticalAlignment="Center"/>
-                    <Button Style="{StaticResource OpenLinkButtonStyle}" VerticalAlignment="Center" Margin="8,0,0,0"
-                            Tag="https://app.restream.io/home" Click="OpenLinkButton_Click"/>
-                </StackPanel>
-                <TextBlock Text="• Update the titles for Youtube &amp; Facebook" Style="{StaticResource SubBodyStyle}"/>
-                <TextBlock Text="• Click &quot;Update Titles&quot;" Style="{StaticResource SubSubBodyStyle}"/>
-                <TextBlock Text="• Title: Get from sermon title / church notices" Style="{StaticResource SubSubBodyStyle}"/>
-                <TextBlock Text="• Description: Input the preacher's name - can also be found in the church notices" Style="{StaticResource SubSubBodyStyle}"/>
-                <TextBlock Text="• Click &quot;Update All&quot;" Style="{StaticResource SubSubBodyStyle}"/>
-                <TextBlock Text="• Ensure Youtube &amp; Facebook are enabled for receiving the stream" Style="{StaticResource SubBodyStyle}"/>
-                <TextBlock Text="• Ensure the toggle button is &quot;on&quot; - it should show as blue" Style="{StaticResource SubSubBodyStyle}"/>
-
-                <StackPanel Orientation="Horizontal" Margin="0,14,0,4">
                     <TextBlock Text="RTMP Web Player" Style="{StaticResource SubHeaderStyle}" Margin="0" VerticalAlignment="Center"/>
                     <Button Style="{StaticResource OpenLinkButtonStyle}" VerticalAlignment="Center" Margin="8,0,0,0"
                             Tag="https://stream.rossmackenzie.co.uk" Click="OpenLinkButton_Click"/>
                 </StackPanel>
-                <TextBlock Text="• Click 'Login' in the top right corner" Style="{StaticResource SubBodyStyle}"/>
+                <TextBlock Text="• Click 'Login' in the top right corner of the homepage" Style="{StaticResource SubBodyStyle}"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource SubSubBodyStyle}">• Email is '<Run FontWeight="Bold">office@smithtonchurch.com</Run>'</TextBlock>
                     <Button Style="{StaticResource CopyButtonStyle}" VerticalAlignment="Center" Margin="4,0,0,0"
@@ -201,8 +187,10 @@
                 <TextBlock Text="• Make sure the thumbnail is set to the correct slide" Style="{StaticResource SubBodyStyle}"/>
                 <TextBlock Text="• Welcome to Smithton Church slide for Sundays" Style="{StaticResource SubSubBodyStyle}"/>
                 <TextBlock Text="• Church Night Livestream slide for Wednesdays" Style="{StaticResource SubSubBodyStyle}"/>
-                <TextBlock Text="• Then update the titles, making them the same as Restream" Style="{StaticResource SubBodyStyle}"/>
-                <TextBlock Text="• Make sure 'Recordings' is toggled ON" Style="{StaticResource SubBodyStyle}"/>
+                <TextBlock Text="• Update the titles by pressing the 'Edit title and description' button in the top right corner" Style="{StaticResource SubBodyStyle}"/>
+                <TextBlock Text="• Title: the sermon title, available in the bulletin" Style="{StaticResource SubSubBodyStyle}"/>
+                <TextBlock Text="• Description: the minister, for example 'Rev Alasdair Macleod'" Style="{StaticResource SubSubBodyStyle}"/>
+                <TextBlock Text="• Ensure that the website, YouTube and Facebook are all toggled ON" Style="{StaticResource SubBodyStyle}"/>
 
                 <TextBlock Text="Camera Position" Style="{StaticResource SubHeaderStyle}"/>
                 <TextBlock Text="• Get each camera into position" Style="{StaticResource SubBodyStyle}"/>

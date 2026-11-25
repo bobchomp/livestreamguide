@@ -1,7 +1,7 @@
 # Smithton Livestream Guide
 
 A small Windows desktop app that shows the Smithton Free Church livestream
-setup guide (power on, cameras, lights, Restream, RTMP Web Player, the T-15
+setup guide (power on, cameras, lights, RTMP Web Player, the T-15
 go-live sequence, etc.) as a clean, always-available reference window — so
 whoever is running the desk doesn't need to dig up a printed sheet or a
 shared doc.
